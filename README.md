@@ -42,18 +42,71 @@ Vamos a ver en detalle cada uno de estos principios, junto a ejemplos básicos, 
  ### Considera este ejemplo:
  
  ```DART
- class Coche{
-  String marca ="";
-  
-  Coche(String marca){this.marca;}
-  
-  String getMarcaCoche(){return marca;}
-  
-  void guardarCocheDB(Coche coche){
-    
+ class Coche {
+  String marca = "";
+
+  Coche(String marca) {
+    this.marca;
   }
-  
+
+  String getMarcaCoche() {
+    return marca;
+  }
+
+  void guardarCocheDB(Coche coche) {}
 }
+
   
  ```
  
+¿Por qué este código viola el principio de responsabilidad única? Para un minuto y piensa un poco ;)
+
+<br><br>
+Como podemos observar, la clase Coche permite tanto el acceso a las propiedades de la clase como a realizar operaciones sobre la BBDD, por lo que la clase ya tiene más de una responsabilidad.
+<br><br>
+Supongamos que debemos realizar cambios en los métodos que realizan las operaciones a la BBDD. En este caso, además de estos cambios, probablemente tendríamos que tocar los nombres o tipos de las propiedades, métodos, etc, cosa que no parece muy eficiente porque solo estamos modificando cosas que tienen que ver con la BBDD, ¿verdad?<br><br>
+
+Para evitar esto, debemos separar las responsabilidades de la clase, por lo que podemos crear otra clase que se encargue de las operaciones a la BBDD:<br><br>
+
+ ```DART
+ class Coche {
+  String marca = "";
+
+  Coche(String marca) {
+    this.marca;
+  }
+
+  String getMarcaCoche() {
+    return marca;
+  }
+}
+
+class CocheDB {
+  void guardarCocheDB(Coche coche) {...}
+  void eliminarCoccheDB(Coche coche) {...}
+}
+
+
+  
+ ```
+ Nuestro programa será mucho más cohesivo y estará más encapsulado aplicando este principio.
+ 
+ # O: Principio abierto/cerrado
+ 
+Establece que las entidades software (clases, módulos y funciones) deberían estar abiertos para su extensión, pero cerrados para su modificación.<br><br>
+
+Si seguimos con la clase Coche:<br><br>
+```DART
+class Coche {
+  String marca = "";
+
+  Coche(String marca) {
+    this.marca;
+  }
+
+  String getMarcaCoche() {
+    return marca;
+  }
+}
+
+```
