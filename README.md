@@ -165,5 +165,65 @@ Esto no cumpliría el principio abierto/cerrado, ya que si decidimos añadir un 
   Para que cumpla con este principio podríamos hacer lo siguiente:
   
   ```DART
-  
+  abstract class Coche {
+  int precioMedioCoche();
+}
+
+class Renault extends Coche {
+  @override
+  int precioMedioCoche() {
+    return 18000;
+  }
+}
+
+class Audi extends Coche {
+  @override
+  int precioMedioCoche() {
+    return 25000;
+  }
+}
+
+class Mercedes extends Coche {
+  @override
+  int precioMedioCoche() {
+    return 27000;
+  }
+}
+
+main() {
+  Renault renault = Renault();
+  Audi audi = Audi();
+  Mercedes mercedes = Mercedes();
+  List<int> listaDeCoche = [
+    renault.precioMedioCoche(),
+    audi.precioMedioCoche(),
+    mercedes.precioMedioCoche()
+  ];
+  imprimirPrecioCoche(listaDeCoche);
+}
+
+void imprimirPrecioCoche(List coches) {
+  for (var element in coches) {
+    print(element);
+  }
+}
+
   ```
+  
+  <br><br>
+  
+  Cada coche extiende la clase abstracta Coche e implementa el método abstracto precioMedioCoche().
+<br>
+Así, cada coche tiene su propia implementación del método precioMedioCoche(), por lo que el método imprimirPrecioMedioCoche() itera el array de coches y solo llama al método precioMedioCoche().
+<br>
+Ahora, si añadimos un nuevo coche, precioMedioCoche() no tendrá que ser modificado. Solo tendremos que añadir el nuevo coche al array, cumpliendo así el principio abierto/cerrado.
+<br>
+
+#Principio de Substitución de Liskov
+
+Declara que una subclase debe ser sustituible por su superclase, y si al hacer esto, el programa falla, estaremos violando este principio.
+<br>
+Cumpliendo con este principio se confirmará que nuestro programa tiene una jerarquía de clases fácil de entender y un código reutilizable.
+<br>
+Veamos un ejemplo:
+<br><br>
