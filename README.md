@@ -30,6 +30,8 @@ Estos principios se llamaron S.O.L.I.D. por sus siglas en inglés:
 Aplicar estos principios facilitará mucho el trabajo, tanto propio como ajeno (es muy probable que tu código lo acabe leyendo muchos otros desarrolladores a lo largo de su ciclo de vida). Algunas de las ventajas de aplicarlo son:
 <br><br>
 
+
+
 -Mantenimiento del código más fácil y rápido<br><br>
 -Permite añadir nuevas funcionalidades de forma más sencilla<br><br>
 -Favorece una mayor reusabilidad y calidad del código, así como la encapsulación<br><br>
@@ -110,3 +112,58 @@ class Coche {
 }
 
 ```
+<br><br>
+
+Si quisiéramos iterar a través de una lista de coches e imprimir sus marcas por pantalla:
+```DART
+void main(){
+
+  
+  List<String> listaDeCoches = [ coche1.marca = "Audi", coche2.marca = "Renault"];
+  
+  imprimirPrecioCoche(listaDeCoches);
+}
+
+
+void imprimirPrecioCoche(List coches){
+  
+  coches.forEach((element){
+    if(element == coche1.marca){
+      print(180000);
+    }
+    if(element == coche2.marca){
+      print(25000);
+    }
+  });
+
+}
+
+```
+<br><br>
+Esto no cumpliría el principio abierto/cerrado, ya que si decidimos añadir un nuevo coche de otra marca:
+```DART
+ List<String> listaDeCoches = [ coche1.marca = "Audi", coche2.marca = "Renault"];
+  ```
+  <br><br>
+  
+  También tendríamos que modificar el método que hemos creado anteriormente:
+  ```DART
+  void imprimirPrecioCoche(List coches){
+  
+  coches.forEach((element){
+    if(element == coche1.marca){
+      print(180000);
+    }
+    if(element == coche2.marca){
+      print(25000);
+    }
+  });
+  ```
+  <br><br>
+  Como podemos ver, para cada nuevo coche habría que añadir nueva lógica al método precioMedioCoche(). Esto es un ejemplo sencillo, pero imagina que tu aplicación crece y crece… ¿cuántas modificaciones tendríamos que hacer? Mejor evitarnos esta pérdida de tiempo y dolor de cabeza, ¿verdad?
+  <br><br>
+  Para que cumpla con este principio podríamos hacer lo siguiente:
+  
+  ```DART
+  
+  ```
