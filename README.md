@@ -116,6 +116,8 @@ class Coche {
 
 Si quisiéramos iterar a través de una lista de coches e imprimir sus marcas por pantalla:
 ```DART
+Coche coche1 = Coche("");
+ Coche coche2 = Coche("");
 void main(){
 
   
@@ -139,6 +141,9 @@ void imprimirPrecioCoche(List coches){
 }
 
 ```
+
+![image](https://user-images.githubusercontent.com/53976242/141530087-8777ae30-b909-4ca9-99dd-9889fa03667a.png)
+
 <br><br>
 Esto no cumpliría el principio abierto/cerrado, ya que si decidimos añadir un nuevo coche de otra marca:
 ```DART
@@ -209,7 +214,8 @@ void imprimirPrecioCoche(List coches) {
 }
 
   ```
-  
+  ![image](https://user-images.githubusercontent.com/53976242/141530208-20c49cf2-ec6a-465f-8d0f-3d9adc77a08b.png)
+
   <br><br>
   
   Cada coche extiende la clase abstracta Coche e implementa el método abstracto precioMedioCoche().
@@ -639,6 +645,13 @@ class Dato{}
 <br><br>
 Así, tanto el módulo de alto nivel como el de bajo nivel dependen de abstracciones, por lo que cumplimos el principio de inversión de dependencias. Además, esto nos forzará a cumplir el principio de Liskov, ya que los tipos derivados de Conexion (DatabaseService y APIService) son sustituibles por su abstracción (interfaz Conexion).
 
-
+---
+title: "Untitled"
+author: "autor"
+date: "21/9/2017"
+output: html_document
+csl: apa.csl
+bibliography: bibliografia.bib
+---
 
 
