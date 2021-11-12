@@ -213,11 +213,11 @@ void imprimirPrecioCoche(List coches) {
   <br><br>
   
   Cada coche extiende la clase abstracta Coche e implementa el método abstracto precioMedioCoche().
-<br>
+<br><br>
 Así, cada coche tiene su propia implementación del método precioMedioCoche(), por lo que el método imprimirPrecioMedioCoche() itera el array de coches y solo llama al método precioMedioCoche().
-<br>
+<br><br>
 Ahora, si añadimos un nuevo coche, precioMedioCoche() no tendrá que ser modificado. Solo tendremos que añadir el nuevo coche al array, cumpliendo así el principio abierto/cerrado.
-<br>
+<br><br>
 
 #Principio de Substitución de Liskov
 
@@ -227,3 +227,44 @@ Cumpliendo con este principio se confirmará que nuestro programa tiene una jera
 <br>
 Veamos un ejemplo:
 <br><br>
+  ```DART
+class Coche {
+  String marca ;
+  
+  Coche(String marca ) {
+    this.marca;
+    
+  }
+
+  String getMarcaCoche() {
+    return marca;
+  }
+}
+
+
+Coche coche1 = Coche("");
+Coche coche2 = Coche("");
+void main(){
+  List<String>  listaDeCoches = [coche1.marca="Audi", coche2.marca="Renault"];
+  
+  imprimirNumeroAsientos(listaDeCoches);
+}
+
+void imprimirNumeroAsientos(List coches) {
+ 
+    if(coche1.marca == "Audi"){
+      print("el auto ${coche1.marca} tiene 2 asientos"); 
+  }
+   if(coche2.marca == "Renault"){
+      print("el auto ${coche2.marca} tiene 4 asientos");
+    
+  }
+}
+``` 
+
+Esto viola tanto el principio de substitución de Liskov como el de abierto/cerrado. El programa debe conocer cada tipo de Coche y llamar a su método numAsientos() asociado.
+<br>
+<br>
+Así, si añadimos un nuevo coche, el método debe modificarse para aceptarlo.
+<br>
+<br>
