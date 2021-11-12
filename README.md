@@ -267,6 +267,8 @@ void imprimirNumeroAsientos(List coches) {
   }
 }
 ``` 
+![image](https://user-images.githubusercontent.com/53976242/141530941-99b7a41d-e8a3-4ebf-a734-de6355ef7675.png)
+
 
 Esto viola tanto el principio de substitución de Liskov como el de abierto/cerrado. El programa debe conocer cada tipo de Coche y llamar a su método numAsientos() asociado.
 <br>
@@ -315,6 +317,8 @@ void imprimirNumeroAsientos(List coches) {
   }
 }
 ```
+![image](https://user-images.githubusercontent.com/53976242/141531003-fa921ea0-8836-4e08-abc8-4e60dc979c25.png)
+
 Para que este método cumpla con el principio, seguiremos estos principios:
 <br><br>
 -Si la superclase (Coche) tiene un método que acepta un parámetro del tipo de la superclase (Coche), entonces su subclase (Renault) debería aceptar como argumento un tipo de la superclase (Coche) o un tipo de la subclase (Renault).
@@ -416,6 +420,9 @@ void main() {
 }
 
 ```
+![image](https://user-images.githubusercontent.com/53976242/141531054-02d0badc-2674-4dd2-8e11-7accec8655b8.png)
+
+
 Hasta aquí todo bien. Pero ahora imaginemos que queremos añadir a los pingüinos. Estos son aves, pero además tienen la habilidad de nadar. Podríamos hacer esto:
 
 <br><br>
@@ -467,7 +474,8 @@ void main() {
   tucan.comer();
 }
   ```
-  
+  ![image](https://user-images.githubusercontent.com/53976242/141531142-523a8e01-3656-4086-a0f9-bf6997e2e524.png)
+
   <br>
   El problema es que el loro no nada, y el pingüino no vuela, por lo que tendríamos que añadir una excepción o aviso si se intenta llamar a estos métodos. Además, si quisiéramos añadir otro método a la interfaz IAve, tendríamos que recorrer cada una de las clases que la implementa e ir añadiendo la implementación de dicho método en todas ellas. Esto viola el principio de segregación de interfaz, ya que estas clases (los clientes) no tienen por qué depender de métodos que no usan.
   <br><br>
