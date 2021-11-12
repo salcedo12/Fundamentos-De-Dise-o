@@ -165,7 +165,7 @@ Esto no cumpliría el principio abierto/cerrado, ya que si decidimos añadir un 
   Para que cumpla con este principio podríamos hacer lo siguiente:
   
   ```DART
-  abstract class Coche {
+abstract class Coche {
   int precioMedioCoche();
 }
 
@@ -268,3 +268,377 @@ Esto viola tanto el principio de substitución de Liskov como el de abierto/cerr
 Así, si añadimos un nuevo coche, el método debe modificarse para aceptarlo.
 <br>
 <br>
+
+```DART
+
+class Coche {
+  String marca;
+
+  Coche(String marca) {
+    this.marca;
+  }
+
+  String getMarcaCoche() {
+    return marca;
+  }
+}
+
+Coche coche1 = Coche("");
+Coche coche2 = Coche("");
+Coche coche3 = Coche("");
+
+void main() {
+  List<String> listaDeCoches = [
+    coche1.marca = "Audi",
+    coche2.marca = "Renault",
+    coche3.marca = "Toyota TXL"
+  ];
+
+  imprimirNumeroAsientos(listaDeCoches);
+}
+
+void imprimirNumeroAsientos(List coches) {
+  if (coche1.marca == "Audi") {
+    print("el auto ${coche1.marca} tiene 2 asientos");
+  }
+  if (coche2.marca == "Renault") {
+    print("el auto ${coche2.marca} tiene 4 asientos");
+  }
+  if (coche3.marca == "Toyota TXL") {
+    print("el auto ${coche3.marca} tiene 6 asientos");
+  }
+}
+```
+Para que este método cumpla con el principio, seguiremos estos principios:
+<br><br>
+-Si la superclase (Coche) tiene un método que acepta un parámetro del tipo de la superclase (Coche), entonces su subclase (Renault) debería aceptar como argumento un tipo de la superclase (Coche) o un tipo de la subclase (Renault).
+<br><br>
+-Si la superclase devuelve un tipo de ella misma (Coche), entonces su subclase (Renault) debería devolver un tipo de la superclase (Coche) o un tipo de la subclase (Renault).
+<br><br>
+Si volvemos a implementar el método anterior:
+
+```DART
+main() {
+  
+  Renault renault = Renault();
+
+  List<int> arrayCoches = [renault.numAsientos()];
+
+  imprimirNumeroAsientos(arrayCoches);
+}
+
+void imprimirNumeroAsientos(List coches) {
+  for (var element in coches) {
+    print("El carro  tiene $element asientos");
+  }
+}
+
+
+```
+Ahora al método no le importa el tipo de la clase, simplemente llama al método numAsientos() de la superclase. Solo sabe que el parámetro es de tipo coche, ya sea Coche o alguna de las subclases.
+<br><br>
+Para esto, ahora la clase Coche debe definir el nuevo método:
+<br><br>
+
+```DART
+
+abstract class Coche {
+  int numAsientos();
+}
+```
+Y las subclases deben implementar dicho método:
+<br><br>
+
+```DART
+class Renault extends Coche {
+  @override
+  int numAsientos() {
+    return 4;
+  }
+}
+
+```
+Como podemos ver, ahora el método imprimirNumAsientos() no necesita saber con qué tipo de coche va a realizar su lógica, simplemente llama al método numAsientos() del tipo Coche, ya que por contrato, una subclase de Coche debe implementar dicho método.
+
+<br><br>
+
+#Principio de segregación de interfaz
+<br><br>
+Este principio establece que los clientes no deberían verse forzados a depender de interfaces que no usan.
+<br><br>
+Dicho de otra manera, cuando un cliente depende de una clase que implementa una interfaz cuya funcionalidad este cliente no usa, pero que otros clientes sí usan, este cliente estará siendo afectado por los cambios que fuercen otros clientes en dicha interfaz.
+<br><br>
+Imaginemos que queremos definir las clases necesarias para albergar algunos tipos de aves. Por ejemplo, tendríamos loros, tucanes y halcones:
+<br><br>
+
+```DART
+abstract class IAve {
+  void volar();
+  void comer();
+}
+
+class Loro implements IAve {
+  @override
+  void volar() {
+    return print("EL loro puede volar");
+  }
+
+  @override
+  void comer() {
+    return print("EL loro puede comer");
+  }
+}
+
+class Tucan implements IAve {
+  @override
+  void volar() {
+    return print("EL Tucan puede Volar");
+  }
+
+  @override
+  void comer() {
+    return print("EL Tucan puede comer");
+  }
+}
+
+void main() {
+  Loro loro = Loro();
+  loro.volar();
+
+  Tucan tucan = Tucan();
+  tucan.comer();
+}
+
+```
+Hasta aquí todo bien. Pero ahora imaginemos que queremos añadir a los pingüinos. Estos son aves, pero además tienen la habilidad de nadar. Podríamos hacer esto:
+
+<br><br>
+  ```DART
+  abstract class IAve {
+  void volar();
+  void comer();
+  void nadar();
+}
+
+class Loro implements IAve {
+  @override
+  void volar() {
+    return print("EL loro puede volar");
+  }
+
+  @override
+  void comer() {
+    return print("EL loro puede comer");
+  }
+
+  @override
+  void nadar() {
+    return print("");
+  }
+}
+
+class Tucan implements IAve {
+  @override
+  void volar() {
+    return print("EL Tucan puede Volar");
+  }
+
+  @override
+  void comer() {
+    return print("EL Tucan puede comer");
+  }
+
+  void nadar() {
+    return print("");
+  }
+}
+
+void main() {
+  Loro loro = Loro();
+  loro.volar();
+
+  Tucan tucan = Tucan();
+  tucan.comer();
+}
+  ```
+  
+  <br>
+  El problema es que el loro no nada, y el pingüino no vuela, por lo que tendríamos que añadir una excepción o aviso si se intenta llamar a estos métodos. Además, si quisiéramos añadir otro método a la interfaz IAve, tendríamos que recorrer cada una de las clases que la implementa e ir añadiendo la implementación de dicho método en todas ellas. Esto viola el principio de segregación de interfaz, ya que estas clases (los clientes) no tienen por qué depender de métodos que no usan.
+  <br><br>
+  Lo más correcto sería segregar más las interfaces, tanto como sea necesario. En este caso podríamos hacer lo siguiente:
+  
+  <br><br>
+  
+  ```DART
+    abstract class IAve {  
+    void comer();
+}
+abstract class IAveVoladora {  
+    void volar();
+}
+
+abstract class IAveNadadora {  
+    void nadar();
+}
+
+class Loro implements IAve, IAveVoladora{
+
+    @override
+     void volar() {
+        return print("el Loro puede volar");
+    }
+
+    @override
+     void comer() {
+        return print("el Loro puede Comer");
+    }
+}
+
+class Pinguino implements IAve, IAveNadadora{
+
+    @override
+     void nadar() {
+         return print("el Pinguino puede Nadar");
+    }
+
+    @override
+     void comer() {
+         return print("el Pinguino puede comer");
+    }
+}
+
+main(){
+  Loro loro = Loro();
+  loro.volar();
+  
+  Pinguino pinguino = Pinguino(); 
+  pinguino.nadar();
+}
+  ````
+  ![image](https://user-images.githubusercontent.com/53976242/141525385-10e1c5e3-e3c4-4a93-b7da-9f6221a98694.png)
+
+  Así, cada clase implementa las interfaces de la que realmente necesita implementar sus métodos. A la hora de añadir nuevas funcionalidades, esto nos ahorrará bastante tiempo, y además, cumplimos con el primer principio (Responsabilidad Única).
+  <br><br>
+  
+  #D: Principio de inversión de dependencias
+  Establece que las dependencias deben estar en las abstracciones, no en las concreciones. Es decir:
+  
+
+-Los módulos de alto nivel no deberían depender de módulos de bajo nivel. Ambos deberían depender de abstracciones.
+<br><br>
+-Las abstracciones no deberían depender de detalles. Los detalles deberían depender de abstracciones.
+<br><br>
+
+En algún momento nuestro programa o aplicación llegará a estar formado por muchos módulos. Cuando esto pase, es cuando debemos usar inyección de dependencias, lo que nos permitirá controlar las funcionalidades desde un sitio concreto en vez de tenerlas esparcidas por todo el programa. Además, este aislamiento nos permitirá realizar testing mucho más fácilmente.
+<br><br>
+
+Supongamos que tenemos una clase para realizar el acceso a datos, y lo hacemos a través de una BBDD:
+<br><br>
+```DART
+class DatabaseService{  
+    //...
+    void getDatos() {}
+}
+
+class AccesoADatos {
+
+     DatabaseService  databaseService = DatabaseService();
+
+     AccesoADatos(DatabaseService databaseService){
+        this.databaseService = databaseService;
+    }
+
+    Dato getDatos(){
+        databaseService.getDatos();
+        //...
+    }
+}
+
+
+class Dato{
+}
+```
+Imaginemos que en el futuro queremos cambiar el servicio de BBDD por un servicio que conecta con una API. Para un minuto a pensar qué habría que hacer... ¿Ves el problema? Tendríamos que ir modificando todas las instancias de la clase AccesoADatos, una por una.
+<br><br>
+Esto es debido a que nuestro módulo de alto nivel (AccesoADatos) depende de un módulo de más bajo nivel (DatabaseService), violando así el principio de inversión de dependencias. El módulo de alto nivel debería depender de abstracciones.
+<br><br>
+Para arreglar esto, podemos hacer que el módulo AccesoADatos dependa de una abstracción más genérica:
+<br><br>
+
+```DART
+abstract class Conexion {  
+    Dato getDatos();
+    void setDatos();
+}
+
+class AccesoADatos {
+
+     Conexion conexion;
+
+     AccesoADatos(Conexion conexion){
+        this.conexion = conexion;
+    }
+
+     getDatos(){
+        conexion.getDatos();
+    }
+}
+
+class Dato{}
+```
+
+Así, sin importar el tipo de conexión que se le pase al módulo AccesoADatos, ni este ni sus instancias tendrán que cambiar, por lo que nos ahorraremos mucho trabajo.
+<br><br>
+Ahora, cada servicio que queramos pasar a AccesoADatos deberá implementar la interfaz Conexion:
+<br><br>
+
+
+```DART
+      
+abstract class Conexion {  
+    Dato getDatos();
+    void setDatos();
+}
+
+class DatabaseService implements Conexion {
+
+    @override
+     Dato getDatos() { }
+
+    @override
+     void setDatos() { }
+}
+
+class APIService implements Conexion{
+
+    @override
+     Dato getDatos() { }
+
+    @override
+     void setDatos() { }
+}
+      
+      
+
+
+class AccesoADatos {
+
+     Conexion conexion;
+
+     AccesoADatos(Conexion conexion){
+        this.conexion = conexion;
+    }
+
+     getDatos(){
+        conexion.getDatos();
+    }
+}
+
+class Dato{}
+```
+<br><br>
+Así, tanto el módulo de alto nivel como el de bajo nivel dependen de abstracciones, por lo que cumplimos el principio de inversión de dependencias. Además, esto nos forzará a cumplir el principio de Liskov, ya que los tipos derivados de Conexion (DatabaseService y APIService) son sustituibles por su abstracción (interfaz Conexion).
+
+
+
+
