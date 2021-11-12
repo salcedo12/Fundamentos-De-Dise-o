@@ -225,7 +225,7 @@ Así, cada coche tiene su propia implementación del método precioMedioCoche(),
 Ahora, si añadimos un nuevo coche, precioMedioCoche() no tendrá que ser modificado. Solo tendremos que añadir el nuevo coche al array, cumpliendo así el principio abierto/cerrado.
 <br><br>
 
-#Principio de Substitución de Liskov
+# Principio de Substitución de Liskov
 
 Declara que una subclase debe ser sustituible por su superclase, y si al hacer esto, el programa falla, estaremos violando este principio.
 <br>
@@ -372,7 +372,7 @@ Como podemos ver, ahora el método imprimirNumAsientos() no necesita saber con q
 
 <br><br>
 
-#Principio de segregación de interfaz
+# Principio de segregación de interfaz
 <br><br>
 Este principio establece que los clientes no deberían verse forzados a depender de interfaces que no usan.
 <br><br>
@@ -534,7 +534,7 @@ main(){
   Así, cada clase implementa las interfaces de la que realmente necesita implementar sus métodos. A la hora de añadir nuevas funcionalidades, esto nos ahorrará bastante tiempo, y además, cumplimos con el primer principio (Responsabilidad Única).
   <br><br>
   
-  #D: Principio de inversión de dependencias
+  # D: Principio de inversión de dependencias
   Establece que las dependencias deben estar en las abstracciones, no en las concreciones. Es decir:
   
 
