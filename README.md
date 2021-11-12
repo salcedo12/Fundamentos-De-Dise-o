@@ -646,12 +646,7 @@ class Dato{}
 Así, tanto el módulo de alto nivel como el de bajo nivel dependen de abstracciones, por lo que cumplimos el principio de inversión de dependencias. Además, esto nos forzará a cumplir el principio de Liskov, ya que los tipos derivados de Conexion (DatabaseService y APIService) son sustituibles por su abstracción (interfaz Conexion).
 
 ---
-title: "Untitled"
-author: "autor"
-date: "21/9/2017"
-output: html_document
-csl: apa.csl
-bibliography: bibliografia.bib
+Carlos Macías Martín . (03 April 2019). Principios SOLID. 2021, noviembre 12, de enmilocalfunciona Recuperado de https://enmilocalfunciona.io/principios-solid/
 ---
 
 
