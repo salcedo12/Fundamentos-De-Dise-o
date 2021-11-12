@@ -7,6 +7,10 @@ Todos sabemos que la POO (Programación Orientada a Objetos) nos permite agrupar
 <img height="200" src="https://user-images.githubusercontent.com/53976242/141298526-c2463ca4-5d53-422f-b958-297dbdebf522.png" />
 
 
+# Lenguaje de programacion manejado para los ejemplos es Dart
+![image](https://user-images.githubusercontent.com/53976242/141536684-e3db659b-0929-4f95-958f-cbec8369a60e.png)
+
+
   De hecho, muchos programas acaban volviéndose un monstruo al que se va alimentando según se añaden nuevas funcionalidades, se realiza mantenimiento, etc…
 
 Viendo este problema, Robert C. Martin estableció cinco directrices o principios para facilitarnos a los desarrolladores la labor de crear programas legibles y mantenibles.
