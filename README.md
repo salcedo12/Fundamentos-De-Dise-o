@@ -8,7 +8,8 @@ Todos sabemos que la POO (Programación Orientada a Objetos) nos permite agrupar
 
 
 # Lenguaje de programacion manejado para los ejemplos es Dart
-![image](https://user-images.githubusercontent.com/53976242/141536684-e3db659b-0929-4f95-958f-cbec8369a60e.png)
+<img  height="400" src="https://user-images.githubusercontent.com/53976242/141536684-e3db659b-0929-4f95-958f-cbec8369a60e.png" />
+
 
 
   De hecho, muchos programas acaban volviéndose un monstruo al que se va alimentando según se añaden nuevas funcionalidades, se realiza mantenimiento, etc…
