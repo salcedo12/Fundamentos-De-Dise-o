@@ -657,7 +657,13 @@ class Dato{}
 ```
 <br><br>
 Así, tanto el módulo de alto nivel como el de bajo nivel dependen de abstracciones, por lo que cumplimos el principio de inversión de dependencias. Además, esto nos forzará a cumplir el principio de Liskov, ya que los tipos derivados de Conexion (DatabaseService y APIService) son sustituibles por su abstracción (interfaz Conexion).
+<br><br><br>
 
+Los principios SOLID contribuirá a tener un código limpio y mucho más fácil de mantener. Los principios SOLID aportan:
+-	Flexibilidad en el desarrollo: el desacoplamiento y cohesión entre clases les da independencia a las mismas lo que nos permite trabajar de maneras más cómoda.
+-	 Software mantenible y escalable: gracias a que la aplicación de estos principios el código es más entendible tanto para el desarrollador como para quienes trabajaran posteriormente sobre el código, sea para su mantenimiento o nuevas implementaciones. 
+-	Claridad en la arquitectura: al tener una estructura muy bien diseñada y entendible la arquitectura será más clara. 
+-	Aplicación más sencilla de test: al tener un código desacoplado y una arquitectura muy clara, será fácil la realización de los test
 ---
 Carlos Macías Martín . (03 April 2019). Principios SOLID. 2021, noviembre 12, de enmilocalfunciona Recuperado de https://enmilocalfunciona.io/principios-solid/
 ---
