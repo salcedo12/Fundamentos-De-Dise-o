@@ -534,7 +534,7 @@ main(){
   pinguino.nadar();
 }
   ````
-  ![image](https://user-images.githubusercontent.com/53976242/141525385-10e1c5e3-e3c4-4a93-b7da-9f6221a98694.png)
+  ![image](https://user-images.githubusercontent.com/53976242/141687386-20110703-dea4-4b31-9e20-4dc8a84a1dda.png)
 
   Así, cada clase implementa las interfaces de la que realmente necesita implementar sus métodos. A la hora de añadir nuevas funcionalidades, esto nos ahorrará bastante tiempo, y además, cumplimos con el primer principio (Responsabilidad Única).
   <br><br>
