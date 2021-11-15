@@ -658,7 +658,8 @@ class Dato{}
 <br><br>
 Así, tanto el módulo de alto nivel como el de bajo nivel dependen de abstracciones, por lo que cumplimos el principio de inversión de dependencias. Además, esto nos forzará a cumplir el principio de Liskov, ya que los tipos derivados de Conexion (DatabaseService y APIService) son sustituibles por su abstracción (interfaz Conexion).
 <br><br><br>
-
+Al tener nuestro software con los principios SOLID, nos ayudara a manejar un código limpio y mucho más dinámico de mantener, al tener estos principios nunca dará miedo en cuanto al crecimiento del software porque siempre será fácil de mantener y entender, entonces los principios SOLID siempre será la mejor opción para que el desarrollador tengo su código limpio y asi otros desarrolladores les sea más fácil comprenderlo. Sin embargo, al no usar estos principios, todo será mas duro, porque si no  los utilizamos será complejo poder resolver un error, ya que todo está unido, será código spaghetti, al ver un crecimiento del software será muy probable, de que siempre habrá errores, entonces esto retardaría el tiempo de salida del programa, será mucho mas complejo, para un programador nuevo, llevar y ver ese código asi sin tener ningún principio.
+<br><br>
 Los principios SOLID contribuirá a tener un código limpio y mucho más fácil de mantener. Los principios SOLID aportan:
 -	Flexibilidad en el desarrollo: el desacoplamiento y cohesión entre clases les da independencia a las mismas lo que nos permite trabajar de maneras más cómoda.
 -	 Software mantenible y escalable: gracias a que la aplicación de estos principios el código es más entendible tanto para el desarrollador como para quienes trabajaran posteriormente sobre el código, sea para su mantenimiento o nuevas implementaciones. 
